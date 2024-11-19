@@ -17,15 +17,16 @@ public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> _logger) : I
     {
         ProblemDetails problemDetails = new ProblemDetails();
         problemDetails.Instance = httpContext.Request.Path;
-        problemDetails.Title = exception.Message;        
+        problemDetails.Title = exception.Message;
+
+        _logger.LogError("{ProblemDetailsTitle}", problemDetails.Title);
 
         if (exception is BaseException ex)
         {
             httpContext.Response.StatusCode = (int)ex.StatusCode;
             problemDetails.Title = ex.Message;
         }
-
-        _logger.LogError("{ProblemDetailsTitle}", problemDetails.Title);
+        
         problemDetails.Status = httpContext.Response.StatusCode;
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken).ConfigureAwait(false);
 

@@ -21,11 +21,8 @@ public static class CouponEndpoints
             .RequireAuthorization()
             .WithDescription("Retrieves a list of coupons")
             .WithTags("Coupons")
-            .WithOpenApi(options =>
-            {
-                options.Summary = "Retrieves a list of coupons";
-                return options;
-            });
+            .WithSummary("Retrieves a list of coupons")
+            .WithOpenApi();
 
         route.MapGet("/{id:int}", GetCoupon)
             .WithName("GetCoupon")
@@ -35,11 +32,8 @@ public static class CouponEndpoints
             .RequireAuthorization()
             .WithDescription("Find a coupon by ID")
             .WithTags("Coupons")
-            .WithOpenApi(options =>
-            {
-                options.Summary = "Find a coupon by a specified ID";
-                return options;
-            });
+            .WithSummary("Find a coupon by a specified ID")
+            .WithOpenApi();
 
         route.MapPost("/", CreateCoupon)
             .WithName("CreateCoupon")
@@ -51,11 +45,8 @@ public static class CouponEndpoints
             .RequireAuthorization()
             .WithDescription("Add a new coupon")
             .WithTags("Coupons")
-            .WithOpenApi(options =>
-            {
-                options.Summary = "Add a new coupon";
-                return options;
-            });
+            .WithSummary("Add a new coupon")
+            .WithOpenApi();
 
         route.MapPut("/{id:int}", UpdateCoupon)
             .WithName("UpdateCoupon")
@@ -67,11 +58,8 @@ public static class CouponEndpoints
             .RequireAuthorization()
             .WithDescription("Updates an existing coupon")
             .WithTags("Coupons")
-            .WithOpenApi(options =>
-            {
-                options.Summary = "Updates an existing coupon by a specified ID";
-                return options;
-            });
+            .WithSummary("Updates an existing coupon by a specified ID")
+            .WithOpenApi();
 
         route.MapDelete("/{id:int}", DeleteCoupon)
             .WithName("DeleteCoupon")
